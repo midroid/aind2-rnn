@@ -40,19 +40,18 @@ def cleaned_text(text):
     import re
     import string
 
-    ASCII_LETTERS = string.ascii_letters
-    ENGLISH_PUNCTUATION = ',.\'!?;:'
+    LETTERS = string.ascii_letters
+    PUNCTUATION = ',.\'!?;:'
 
+    text = text.replace("'", "?")
     # find all unique characters in the text
     uniques = ''.join(set(text))
 
     # remove as many non-english characters and character sequences as you can 
     for char in uniques:
-        if char not in ASCII_LETTERS and char not in ENGLISH_PUNCTUATION:
+        if char not in LETTERS and char not in PUNCTUATION:
             text = text.replace(char, ' ')
 
-    # shorten any extra dead space created above
-    text = text.replace('  ',' ')
 
     return text
 
